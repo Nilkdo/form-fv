@@ -2,37 +2,34 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/PHPMailer/src/Exception.php'
-require 'PHPMailer/PHPMailer/src/PHPMailer,php'
-require 'PHPMailer/PHPMailer/src/SMTP.php'
+require 'PHPMailer/PHPMailer/src/Exception.php';
+require 'PHPMailer/PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/PHPMailer/src/SMTP.php';
+188;
 
-$mail = new PHPMailer(true):
+$email = new PHPMailer();
+try{
 
-try
-{
-    $mail->SMTPDebug = 2;
-    $mail->isSMTP();
-    $mail->Host = 'smtp.mailtrap.io';
-    $phpmailer->Username = 'bc7e5e699c184c';
-    $phpmailer->Password = '3a8b17d95a14a6';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+$email = new PHPMailer();
+$email->isSMTP();
+$email->Host = 'smtp.mailtrap.io';
+$email->SMTPAuth = true;
+$email->Port = 2525;
+$email->Username = 'bc7e5e699c184c';
+$email->Password = '3a8b17d95a14a6';
 
+$email->setFrom('nicolas02m@gmail.com');
+$email->addAddress('nicolap02m@gmail.com');
 
-    $mail->setFrom('nicolas02m@gmail.com')
-    $mail->addAddress('nicolap02m@gmail.com')
+$email->isHTML(true);
+$email->Subject ='contacto desde el formulario';
+$email->Body    ='este es el contenido del mensaje <b>en negrita!</b>1';
+$email->AltBody ='Este es el contenido del mensaje en texto plano';
 
-    $mail->isHTML(true)
-    $mail->Subjet = 'contacto desde formulario';
-    $mail->Body   = 'Este es el contenido del mensajeb';
-    $mail->altBody= 'este es el contenido del mensaje'
-
-
-    //envia el mensaje
-    $mail->send();
-    echos('El mensaje ha sido envidao');
+$email->send();
+echo'El mensaje ha sido enviado';
 }catch(Exception $e) {
-    echo 'El mensaje no se ha podido enviar, error: ',$mail->ErrorInfo;
+    echo'el mensaje no se a podido enviar',$email->ErrorInfo;
 }
 
 ?>
