@@ -67,7 +67,7 @@ $email->addAddress('nicolap02m@gmail.com');
 
 $email->isHTML(true);
 $email->Subject ='contacto desde el formulario';
-$email->Body    ='este es el contenido del mensaje <b>en negrita!</b>1';
+$email->Body    = $message ;
 $email->AltBody ='Este es el contenido del mensaje en texto plano';
 
 $email->send();
