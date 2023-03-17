@@ -1,11 +1,12 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer/PHPMailer/src/Exception.php';
 require 'PHPMailer/PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/PHPMailer/src/SMTP.php';
-188;
+
 
 
 
@@ -47,34 +48,29 @@ if (count($_POST))
 
         $message = 'You have received a contact form submission';
             
-//Email: '.$_POST['email'].'
-//Message: '.$_POST['email'];
-
-
-$email = new PHPMailer();
-try{
-
-$email = new PHPMailer();
-$email->isSMTP();
-$email->Host = 'smtp.mailtrap.io';
-$email->SMTPAuth = true;
-$email->Port = 2525;
-$email->Username = 'bc7e5e699c184c';
-$email->Password = '3a8b17d95a14a6';
-
-$email->setFrom('nicolas02m@gmail.com');
-$email->addAddress('nicolap02m@gmail.com');
-
-$email->isHTML(true);
-$email->Subject ='contacto desde el formulario';
-$email->Body    = $message ;
-$email->AltBody ='Este es el contenido del mensaje en texto plano';
-
-$email->send();
-echo'El mensaje ha sido enviado';
-}catch(Exception $e) {
-    echo'el mensaje no se a podido enviar',$email->ErrorInfo;
-}
+        $mail = new PHPMailer();
+        try{
+        
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = 'bc7e5e699c184c';
+        $mail->Password = '3a8b17d95a14a6';
+        
+        $mail->setFrom('nicolas02m@gmail.com');
+        $mail->addAddress($email);
+        
+        $mail->isHTML(true);
+        $mail->Subject ='contacto desde el formulario';
+        $mail->Body    = $message ;
+        
+        $mail->send();
+        echo'El mensaje ha sido enviado';
+        }catch(Exception $e) {
+            echo'el mensaje no se a podido enviar',$mail->ErrorInfo;
+        }
 
     }
 }

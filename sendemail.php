@@ -33,3 +33,5 @@ echo'El mensaje ha sido enviado';
 }
 
 ?>
+
+$mail = new PHPMailer();
